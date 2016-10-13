@@ -1,4 +1,4 @@
-package com.csantana.tipcalc;
+package com.csantana.tipcalc.activities;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.csantana.tipcalc.R;
+import com.csantana.tipcalc.TipCalc;
 import com.csantana.tipcalc.fragments.TipHistoryListFragment;
 import com.csantana.tipcalc.fragments.TipHistoryListFragmentListener;
 
