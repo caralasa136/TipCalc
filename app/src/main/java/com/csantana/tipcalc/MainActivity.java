@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         @Bind(R.id.txtTip)
         TextView txtTip;
 
-                private final static int TIP_STEP_CHANGE = 1;
-        private final static int DEFAULT_TIP_CHANGE = 10;
+    private final static int TIP_STEP_CHANGE = 1;
+    private final static int DEFAULT_TIP_PERCENTAGE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,55 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btnSubmit)
         public void handleSubmit() {
                 hideKeyboard();
+
+        String strInputTotal = inputBill.getText().toString().trim();
+
+                        if(!strInputTotal.isEmpty()) {
+                        double total = Double.parseDouble(strInputTotal);
+                        int tipPercentage = getTipPrecentage();
+
+                                double tip = total * (tipPercentage/100d);
+
+                                String strTip = String.format(getString(R.string.global_message_tip), tip);
+                        txtTip.setVisibility(View.VISIBLE);
+                        txtTip.setText(strTip);
+                    }
             }
+                @OnClick(R.id.btnIncrease)
+                public void handleClickIncrease() {
+                    hideKeyboard();
+                    handleTipChange(TIP_STEP_CHANGE);
+                    }
+                @OnClick(R.id.btnDecrease)
+                public void handleClickDecrease() {
+                    hideKeyboard();
+                    handleTipChange(-TIP_STEP_CHANGE);
+                    }
+
+
+                public int getTipPrecentage() {
+                    int tipPercentage = DEFAULT_TIP_PERCENTAGE;
+                    String strInputTipPercentage = inputPercentage.getText().toString().trim();
+
+                            if(!strInputTipPercentage.isEmpty()) {
+                                    tipPercentage = Integer.parseInt(strInputTipPercentage);
+                                }
+                            else {
+                                    inputPercentage.setText(String.valueOf(DEFAULT_TIP_PERCENTAGE));
+                                }
+
+                            return tipPercentage;
+            }
+
+    public void handleTipChange(int change) {
+        int tipPercentage = getTipPrecentage();
+                tipPercentage += change;
+
+        if(tipPercentage > 0) {
+            inputPercentage.setText(String.valueOf(tipPercentage));
+        }
+
+                                            }
 
 
                 private void hideKeyboard() {
