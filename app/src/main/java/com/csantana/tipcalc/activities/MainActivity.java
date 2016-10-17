@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import java.util.Date;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.csantana.tipcalc.R;
 import com.csantana.tipcalc.TipCalc;
 import com.csantana.tipcalc.fragments.TipHistoryListFragment;
 import com.csantana.tipcalc.fragments.TipHistoryListFragmentListener;
+import com.csantana.tipcalc.models.TipRecord;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -82,9 +84,13 @@ public class MainActivity extends AppCompatActivity {
                         double total = Double.parseDouble(strInputTotal);
                         int tipPercentage = getTipPrecentage();
 
-                                double tip = total * (tipPercentage/100d);
-                            String strTip = String.format(getString(R.string.global_message_tip), tip);
-                            fragmentListener.action(strTip);
+                            TipRecord record = new TipRecord();
+                            record.setBill(total);
+                            record.setTipPercentage(tipPercentage);
+                            record.setTimestamp(new Date());
+
+                            String strTip = String.format(getString(R.string.global_message_tip), record.getTip());
+                            fragmentListener.addToList(record);
                         txtTip.setVisibility(View.VISIBLE);
                         txtTip.setText(strTip);
                     }
