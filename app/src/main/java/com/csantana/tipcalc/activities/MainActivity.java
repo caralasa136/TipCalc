@@ -74,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
                         return super.onOptionsItemSelected(item);
             }
 
+    @OnClick(R.id.btnClear)
+        public void handleClickClear()
+        {
+                fragmentListener.clearList();
+                txtTip.setVisibility(View.INVISIBLE);
+            }
+
+
     @OnClick(R.id.btnSubmit)
         public void handleSubmit() {
                 hideKeyboard();
