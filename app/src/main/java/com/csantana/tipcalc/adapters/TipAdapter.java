@@ -1,17 +1,25 @@
 package com.csantana.tipcalc.adapters;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import java.sql.Timestamp;
 import java.util.*;
+import java.util.jar.Attributes;
 
 import com.csantana.tipcalc.R;
+import com.csantana.tipcalc.db.TipsDatabase;
 import com.csantana.tipcalc.entity.TipRecord;
 import com.csantana.tipcalc.utils.TipUtils;
+import com.raizlabs.android.dbflow.sql.language.Delete;
+import com.raizlabs.android.dbflow.sql.language.OrderBy;
 import com.raizlabs.android.dbflow.sql.language.Select;
+
+
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -68,6 +76,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
             }
 
                 public void clear() {
+                    dataset = new Delete().from(TipRecord.class).queryList();
                 dataset.clear();
                 notifyDataSetChanged();
             }
