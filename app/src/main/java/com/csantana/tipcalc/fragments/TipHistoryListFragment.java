@@ -5,18 +5,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Toast;
-import java.util.ArrayList;
+
 import com.csantana.tipcalc.R;
 import com.csantana.tipcalc.activities.TipDetailActivity;
 import com.csantana.tipcalc.adapters.OnItemClickListener;
 import com.csantana.tipcalc.adapters.TipAdapter;
-import com.csantana.tipcalc.models.TipRecord;
+import com.csantana.tipcalc.entity.TipRecord;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

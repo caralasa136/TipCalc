@@ -19,7 +19,7 @@ import com.csantana.tipcalc.R;
 import com.csantana.tipcalc.TipCalc;
 import com.csantana.tipcalc.fragments.TipHistoryListFragment;
 import com.csantana.tipcalc.fragments.TipHistoryListFragmentListener;
-import com.csantana.tipcalc.models.TipRecord;
+import com.csantana.tipcalc.entity.TipRecord;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

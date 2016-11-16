@@ -1,6 +1,6 @@
 package com.csantana.tipcalc.adapters;
 
-import com.csantana.tipcalc.models.TipRecord;
+import com.csantana.tipcalc.entity.TipRecord;
 
 /**
  * Created by CLsantana on 24/10/16.
