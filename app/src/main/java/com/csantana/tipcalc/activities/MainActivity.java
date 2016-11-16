@@ -14,6 +14,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.csantana.tipcalc.db.TipsDatabase;
 import com.csantana.tipcalc.utils.TipUtils;
 
 import com.csantana.tipcalc.R;
@@ -21,6 +23,8 @@ import com.csantana.tipcalc.TipCalc;
 import com.csantana.tipcalc.fragments.TipHistoryListFragment;
 import com.csantana.tipcalc.fragments.TipHistoryListFragmentListener;
 import com.csantana.tipcalc.entity.TipRecord;
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -53,10 +57,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        initDB();
         TipHistoryListFragment fragment = (TipHistoryListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentList);
 
         fragment.setRetainInstance(true);
         fragmentListener = (TipHistoryListFragmentListener) fragment;
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        DBTearDown();
+    }
+
+    private void DBTearDown() {
+        FlowManager.destroy();
+    }
+
+    private void initDB() {
+        FlowManager.init(new FlowConfig.Builder(this).build());
+        FlowManager.getDatabase(TipsDatabase.class).getWritableDatabase();
     }
 
     @Override
