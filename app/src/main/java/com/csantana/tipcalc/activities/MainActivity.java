@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.csantana.tipcalc.utils.TipUtils;
 
 import com.csantana.tipcalc.R;
 import com.csantana.tipcalc.TipCalc;
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                             record.setTipPercentage(tipPercentage);
                             record.setTimestamp(new Date());
 
-                            String strTip = String.format(getString(R.string.global_message_tip), record.getTip());
+                            String strTip = String.format(getString(R.string.global_message_tip), TipUtils.getTip(record));
                             fragmentListener.addToList(record);
                         txtTip.setVisibility(View.VISIBLE);
                         txtTip.setText(strTip);
