@@ -11,6 +11,7 @@ import java.util.*;
 import com.csantana.tipcalc.R;
 import com.csantana.tipcalc.entity.TipRecord;
 import com.csantana.tipcalc.utils.TipUtils;
+import com.raizlabs.android.dbflow.sql.language.Select;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -55,8 +56,14 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
                 return dataset.size();
             }
 
+    public void init(){
+        dataset = new Select().from(TipRecord.class).queryList();
+    }
+
                 public void add(TipRecord record) {
-                dataset.add(0, record);
+                    //dataset.add(0, record);
+                    record.save();
+                    dataset = new Select().from(TipRecord.class).queryList();
                 notifyDataSetChanged();
             }
 
